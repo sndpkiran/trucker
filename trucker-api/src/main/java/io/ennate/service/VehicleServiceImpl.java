@@ -44,6 +44,36 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     @Transactional
     public Reading createReading(Reading reading) {
+        Vehicle v = repository.find(reading.getVin());
+
+        if (v != null) {
+            if(reading.getEngineRpm() > v.getRedlineRpm()){
+                repository.createAlert("High RPM alert", "HIGH", v);
+            }
+            if(reading.getFuelVolume() < (0.10 * v.getMaxFuelVolume())) {
+                repository.createAlert("Low Fuel alert", "MEDUIUM", v);
+            }
+
+            if(reading.getTires().getFrontLeft() < 32 || reading.getTires().getFrontLeft() > 36) {
+                repository.createAlert("Tire pressure alert", "LOW", v);
+            }
+            if(reading.getTires().getFrontRight() < 32 || reading.getTires().getFrontRight() > 36) {
+                repository.createAlert("Tire pressure alert", "LOW", v);
+            }
+            if(reading.getTires().getRearLeft() < 32 || reading.getTires().getRearLeft() > 36) {
+                repository.createAlert("Tire pressure alert", "LOW", v);
+            }
+            if(reading.getTires().getRearRight() < 32 || reading.getTires().getRearRight() > 36) {
+                repository.createAlert("Tire pressure alert", "LOW", v);
+            }
+
+            if(reading.getEngineCoolantLow() || reading.getCheckEngineLightOn()) {
+                repository.createAlert("Low coolant alert", "LOW", v);
+            }
+        } else {
+            throw new VehicleNotFoundException("Reading from a vehicle not in database.");
+        }
+
         return repository.createReading(reading);
     }
 
@@ -73,7 +103,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Vehicle> listHighAlerts() {
+    public List<Alert> listHighAlerts() {
         return repository.listHighAlerts();
     }
 }

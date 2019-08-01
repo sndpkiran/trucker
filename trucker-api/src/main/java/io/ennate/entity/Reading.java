@@ -32,9 +32,6 @@ public class Reading {
 
     private Integer engineRpm;
 
-//    @ElementCollection
-//    private Map<String, Tire> tires;
-
     @Embedded
     private Tire tires;
 

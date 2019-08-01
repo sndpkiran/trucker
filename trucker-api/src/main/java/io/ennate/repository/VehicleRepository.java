@@ -14,9 +14,10 @@ public interface VehicleRepository {
     Vehicle find(String vin);
     Vehicle create(Vehicle vehicle);
     Reading createReading(Reading reading);
+    Alert createAlert(String message, String priority, Vehicle v);
     List<Vehicle> update(List<Vehicle> vehicles);
     void delete(Vehicle vehicle);
     List<GeoLocation> findLastLocation(String id);
     List<Alert> listAllAlerts(String id);
-    List<Vehicle> listHighAlerts();
+    List<Alert> listHighAlerts();
 }
