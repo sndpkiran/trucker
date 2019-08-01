@@ -49,16 +49,16 @@ public class VehicleController {
 
     @RequestMapping(method = RequestMethod.GET, value = "{id}/last_locations")
     public List<GeoLocation> findLastLocation(@PathVariable("id") String id) {
-        return null;
+        return service.findLastLocation(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "{id}/alerts")
     public List<Alert> listAllAlerts(@PathVariable("id") String id) {
-        return null;
+        return service.listAllAlerts(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "high_alerts")
-    public List<Vehicle> listHighAlerts() {
-        return null;
+    public List<Alert> listHighAlerts() {
+        return service.listHighAlerts();
     }
 }

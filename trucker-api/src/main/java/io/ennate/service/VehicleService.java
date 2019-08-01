@@ -16,5 +16,5 @@ public interface VehicleService {
     void delete(Vehicle vehicle);
     List<GeoLocation> findLastLocation(String vin);
     List<Alert> listAllAlerts(String vin);
-    List<Vehicle> listHighAlerts();
+    List<Alert> listHighAlerts();
 }
