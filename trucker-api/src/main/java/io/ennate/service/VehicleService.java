@@ -13,8 +13,8 @@ public interface VehicleService {
     Vehicle create(Vehicle vehicle);
     Reading createReading(Reading reading);
     List<Vehicle> update(List<Vehicle> vehicles);
-    void delete(Vehicle vehicle);
+    Vehicle delete(String vin);
     List<GeoLocation> findLastLocation(String vin);
-    List<Alert> listAllAlerts(String vin);
-    List<Alert> listHighAlerts();
+    List<Alert> findAllByVehicleVin(String vin);
+    List<Alert> findAllByPriority();
 }

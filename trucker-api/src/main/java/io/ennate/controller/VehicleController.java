@@ -42,9 +42,9 @@ public class VehicleController {
         return service.createReading(reading);
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "{id}")
-    public void delete(@PathVariable("id") String id) {
-        return;
+    @RequestMapping(method = RequestMethod.DELETE, value = "{vin}")
+    public Vehicle delete(@PathVariable("vin") String vin) {
+        return service.delete(vin);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "{id}/last_locations")
@@ -54,11 +54,11 @@ public class VehicleController {
 
     @RequestMapping(method = RequestMethod.GET, value = "{id}/alerts")
     public List<Alert> listAllAlerts(@PathVariable("id") String id) {
-        return service.listAllAlerts(id);
+        return service.findAllByVehicleVin(id);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "high_alerts")
     public List<Alert> listHighAlerts() {
-        return service.listHighAlerts();
+        return service.findAllByPriority();
     }
 }
