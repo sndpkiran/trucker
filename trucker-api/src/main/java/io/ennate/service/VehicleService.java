@@ -11,10 +11,6 @@ public interface VehicleService {
     List<Vehicle> findAll();
     Vehicle find(String vin);
     Vehicle create(Vehicle vehicle);
-    Reading createReading(Reading reading);
     List<Vehicle> update(List<Vehicle> vehicles);
     Vehicle delete(String vin);
-    List<GeoLocation> findLastLocation(String vin);
-    List<Alert> findAllByVehicleVin(String vin);
-    List<Alert> findAllByPriority();
 }
